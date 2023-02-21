@@ -1,5 +1,6 @@
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,5 +9,5 @@ export default defineConfig({
     host: true,
     port: 3300,
   },
-  plugins: [react()],
+  plugins: [react(), vanillaExtractPlugin()],
 })
