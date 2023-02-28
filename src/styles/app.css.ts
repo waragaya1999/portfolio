@@ -1,7 +1,9 @@
 import { globalStyle } from "@vanilla-extract/css"
 
-globalStyle("body", {
+globalStyle("html, body", {
   margin: 0,
+  fontFamily: "futura-pt, Noto Sans JP, sans-serif",
+  fontSize: "62.5%",
   backgroundColor: "#fff",
-  // fontSize: "62.5%",
+  overflowX: "hidden",
 })
