@@ -1,6 +1,7 @@
 import HomePresenter from "./presenter"
 
 export default function Home() {
-  const height = window.innerHeight
-  return <HomePresenter height={height} />
+  const windowHeight = window.innerHeight
+  const windowWidth = window.innerWidth
+  return <HomePresenter windowWidth={windowWidth} windowHeight={windowHeight} />
 }

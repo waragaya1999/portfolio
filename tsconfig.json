@@ -17,5 +17,11 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "types": [
+    "node",
+    "jest",
+    "@testing-library/jest-dom",
+    "vite-plugin-svgr/client"
+  ]
 }
