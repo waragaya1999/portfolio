@@ -27,17 +27,17 @@ export default function HeaderPresenter({ handleMenuCalled }: Props) {
         <motion.div
           className={headerStyle.item}
           animate={control1}
-          transition={{ ease: "easeInOut" }}
+          transition={{ ease: "easeInOut", duration: "0" }}
         />
         <motion.div
           className={headerStyle.item}
           animate={control2}
-          transition={{ ease: "easeInOut" }}
+          transition={{ ease: "easeInOut", duration: "0" }}
         />
         <motion.div
           className={headerStyle.item}
           animate={control3}
-          transition={{ ease: "easeInOut" }}
+          transition={{ ease: "easeInOut", duration: "0" }}
         />
       </header>
     </>

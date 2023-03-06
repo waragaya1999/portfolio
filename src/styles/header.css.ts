@@ -6,9 +6,9 @@ export const headerStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
-    backgroundColor: "#fff",
     top: "2%",
     right: "0",
+    cursor: "pointer",
   }),
   item: style({
     width: "20px",

@@ -29,9 +29,12 @@ export default function MenuPresenter({ handleMenuCalled }: Props) {
       animate={{ x: [3000, 0] }}
       transition={{ ease: "easeOut", duration: 0.4 }}
     >
-      <div onClick={() => handleMenuCalled(false)}>
+      <div
+        onClick={() => handleMenuCalled(false)}
+        className={menuStyle.closeButton}
+      >
         <motion.div className={menuStyle.close} animate={{ rotate: [45] }} />
-        <motion.div className={menuStyle.close} animate={{ rotate: [-45] }} />
+        <motion.div className={menuStyle.close} animate={{ rotate: [135] }} />
       </div>
       <div className={menuStyle.wrap}>
         <div>
@@ -62,6 +65,7 @@ export default function MenuPresenter({ handleMenuCalled }: Props) {
             onMouseLeave={() => hrWidth2.start({ scaleX: 1 })}
             onClick={() => {
               navigate("/about")
+              handleMenuCalled(false)
             }}
           >
             ABOUT
@@ -81,6 +85,7 @@ export default function MenuPresenter({ handleMenuCalled }: Props) {
             onMouseLeave={() => hrWidth3.start({ scaleX: 1 })}
             onClick={() => {
               navigate("/works")
+              handleMenuCalled(false)
             }}
           >
             WORKS
@@ -100,6 +105,7 @@ export default function MenuPresenter({ handleMenuCalled }: Props) {
             onMouseLeave={() => hrWidth4.start({ scaleX: 1 })}
             onClick={() => {
               navigate("/contact")
+              handleMenuCalled(false)
             }}
           >
             CONTACT

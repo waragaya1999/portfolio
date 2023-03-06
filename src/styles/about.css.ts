@@ -19,7 +19,7 @@ export const aboutStyle = {
   h2: style({
     fontSize: "clamp(40px, calc(2.5rem + ((1vw - 7px) * 5.7377)), 110px)",
     fontWeight: "400",
-    paddingTop: "10%",
+    paddingTop: "15%",
     marginLeft: "2%",
   }),
   discography: style({
@@ -32,10 +32,23 @@ export const aboutStyle = {
   }),
   contact: style({
     width: "48%",
+    display: "flex",
+    flexDirection: "column",
     fontSize: "18px",
+  }),
+  a: style({
+    marginBottom: "10%",
+    color: "#000",
+    textDecoration: "none",
   }),
   career: style({
     width: "48%",
-    fontSize: "24px",
+    fontSize: "20px",
+  }),
+  p: style({
+    marginBottom: "8%",
+  }),
+  span: style({
+    fontSize: "18px",
   }),
 }

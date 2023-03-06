@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion"
 import { ReactComponent as Logo } from "../../images/portfolio.svg"
 import { homeStyle } from "../../styles/home.css"
 import Header from "../Header/container"
@@ -17,7 +18,13 @@ export default function HomePresenter({
 }: Props) {
   return (
     <>
-      {menuCalled && <Menu handleMenuCalled={handleMenuCalled} />}
+      <AnimatePresence>
+        {menuCalled && (
+          <motion.div exit={{ opacity: 0 }} key="content">
+            <Menu handleMenuCalled={handleMenuCalled} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <Header handleMenuCalled={handleMenuCalled} />
       <div
         style={{
