@@ -14,7 +14,7 @@ export const aboutStyle = {
     fontSize: "clamp(180px, calc(11.25rem + ((1vw - 7px) * 22.9508)), 460px)",
     fontWeight: "400",
     left: "6%",
-    top: "-24%",
+    top: "-20%",
   }),
   h2: style({
     fontSize: "clamp(40px, calc(2.5rem + ((1vw - 7px) * 5.7377)), 110px)",
@@ -30,25 +30,46 @@ export const aboutStyle = {
     width: "40%",
     marginTop: "5%",
   }),
-  contact: style({
-    width: "48%",
+  skill: style({
+    width: "45%",
     display: "flex",
-    flexDirection: "column",
+    flexWrap: "wrap",
     fontSize: "18px",
   }),
-  a: style({
-    marginBottom: "10%",
+  skillSpan: style({
+    width: "100%",
     color: "#000",
-    textDecoration: "none",
+    marginBottom: "5%",
+  }),
+  a: style({
+    width: "fit-content",
+    display: "flex",
+    alignItems: "center",
+    color: "#000",
+    marginBottom: "5%",
+    marginRight: "5%",
   }),
   career: style({
-    width: "48%",
-    fontSize: "20px",
+    width: "45%",
+    fontSize: "18px",
   }),
   p: style({
     marginBottom: "8%",
   }),
   span: style({
     fontSize: "18px",
+  }),
+  hr: style({
+    width: "100%",
+    marginTop: "0",
+  }),
+  svg: style({
+    height: "35px",
+    maxWidth: "40px",
+    paddingRight: "10px",
+  }),
+  intro: style({
+    fontSize: "16px",
+    lineHeight: "2",
   }),
 }

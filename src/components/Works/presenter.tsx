@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { AnimatePresence, motion, useAnimation } from "framer-motion"
 import { ReactComponent as Champ } from "/public/champions.svg"
 import { ReactComponent as Keisyo } from "/public/keisyo.svg"
 import { ReactComponent as Pole } from "/public/telegraphPole.svg"
 import { ReactComponent as Cafe } from "/public/cafeDePARIS.svg"
+import { ReactComponent as Logo } from "../../images/portfolio.svg"
 import { worksStyle } from "../../styles/works.css"
 import Header from "../Header/container"
 import HomePresenter from "../Home/presenter"
@@ -17,53 +18,57 @@ export default function WorksPresenter({
   menuCalled,
   handleMenuCalled,
 }: Props) {
-  const [worksTopHeight, setWorksTopHeight] = useState<number | undefined>()
-  const [worksBottomHeight, setWorksBottomHeight] = useState<
-    number | undefined
-  >()
-  const [worksBottomChild1Height, setWorksBottomChild1Height] = useState<
-    number | undefined
-  >()
-  const [worksBottomChild2Height, setWorksBottomChild2Height] = useState<
-    number | undefined
-  >()
-  const [keisyoHeight, setKeisyoHeight] = useState<number | undefined>()
+  const [worksTopHeight, setWorksTopHeight] = useState<number>(0)
+  const [worksBottomHeight, setWorksBottomHeight] = useState<number>(0)
+  const [worksBottomChild1Height, setWorksBottomChild1Height] =
+    useState<number>(0)
+  const [worksBottomChild2Height, setWorksBottomChild2Height] =
+    useState<number>(0)
+  const [keisyoHeight, setKeisyoHeight] = useState<number>(0)
   const pole1 = useAnimation()
   const pole2 = useAnimation()
   const champ = useAnimation()
   const cafe = useAnimation()
   const keisyo1 = useAnimation()
   const keisyo2 = useAnimation()
+  const logo = useAnimation()
 
   useEffect(() => {
-    setWorksTopHeight(document.getElementById("topSquare")?.clientWidth)
-    setWorksBottomChild1Height(
-      document.getElementById("worksBottomChild")?.clientWidth,
-    )
-    const target0 = document.getElementById("worksBottomChild")
-    if (target0 != null) {
-      if (target0.clientWidth != undefined) {
-        setKeisyoHeight((target0.clientWidth * 0.94) / 6)
-      }
+    const topSquare = document.getElementById("topSquare")
+    const worksBottomChild = document.getElementById("worksBottomChild")
+    const bottomLeft = document.getElementById("bottomLeft")
+    if (topSquare) {
+      setWorksTopHeight(topSquare.clientWidth)
     }
-    const target1 = document.getElementById("bottomLeft")
-    const target2 = document.getElementById("bottomLeft")
-    if (target1 != null) {
-      if (target1.clientWidth != undefined) {
-        setWorksBottomHeight(target1.clientWidth * 2)
-        if (target2 != null) {
-          if (target2.clientWidth != undefined) {
-            setWorksBottomChild2Height(
-              target1.clientWidth * 2 - target2.clientWidth,
-            )
-          }
-        }
+    if (worksBottomChild) {
+      setWorksBottomChild1Height(worksBottomChild.clientWidth)
+      setKeisyoHeight((worksBottomChild.clientWidth * 0.94) / 6)
+      if (bottomLeft) {
+        setWorksBottomHeight(bottomLeft.clientWidth * 2)
+        setWorksBottomChild2Height(
+          bottomLeft.clientWidth * 2 - worksBottomChild.clientWidth,
+        )
       }
     }
   })
+  const [width, setWidth] = useState(0)
+  const ref = React.useRef<HTMLDivElement | null>(null)
+  React.useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      entries.forEach((el) => {
+        setWidth(el.contentRect.width)
+      })
+    })
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
   return (
     <>
-      <div className={worksStyle.wrap}>
+      <div className={worksStyle.wrap} ref={ref}>
         <AnimatePresence>
           {menuCalled && (
             <motion.div exit={{ opacity: 0 }} key="content">
@@ -84,8 +89,8 @@ export default function WorksPresenter({
               id="topSquare"
               className={worksStyle.topSquare}
               onMouseEnter={() => {
-                pole1.start({ y: 500 })
-                pole2.start({ y: -500 })
+                pole1.start({ y: worksTopHeight })
+                pole2.start({ y: -worksTopHeight })
               }}
               onMouseLeave={() => {
                 pole1.start({ y: 0 })
@@ -105,7 +110,7 @@ export default function WorksPresenter({
                     marginLeft: "-9%",
                   }}
                   animate={pole1}
-                  transition={{ ease: "easeInOut", duration: "1.5" }}
+                  transition={{ ease: "easeInOut", duration: "1.2" }}
                 >
                   <Pole
                     style={{
@@ -122,7 +127,7 @@ export default function WorksPresenter({
                     backgroundColor: "#fff",
                   }}
                   animate={pole2}
-                  transition={{ ease: "easeInOut", duration: "1.5" }}
+                  transition={{ ease: "easeInOut", duration: "1.2" }}
                 >
                   <Pole
                     style={{
@@ -136,9 +141,12 @@ export default function WorksPresenter({
             <div className={worksStyle.topRight}>
               <div
                 className={worksStyle.innerRow}
-                style={{ backgroundImage: "url(/champions.png)" }}
+                style={{
+                  width: "96.6%",
+                  backgroundImage: "url(/champions.png)",
+                }}
                 onMouseEnter={() => {
-                  champ.start({ y: -500 })
+                  champ.start({ y: -worksTopHeight })
                 }}
                 onMouseLeave={() => {
                   champ.start({ y: 0 })
@@ -168,10 +176,11 @@ export default function WorksPresenter({
               <div
                 className={worksStyle.innerRow}
                 style={{
+                  height: "97%",
                   backgroundImage: "url(/cafe.png)",
                 }}
                 onMouseEnter={() => {
-                  cafe.start({ x: 500 })
+                  cafe.start({ x: worksBottomChild1Height })
                 }}
                 onMouseLeave={() => {
                   cafe.start({ x: 0 })
@@ -187,7 +196,7 @@ export default function WorksPresenter({
                     backgroundColor: "#fff",
                   }}
                   animate={cafe}
-                  transition={{ ease: "easeInOut", duration: "1.5" }}
+                  transition={{ ease: "easeInOut", duration: "1.2" }}
                 >
                   <Cafe />
                 </motion.div>
@@ -207,8 +216,8 @@ export default function WorksPresenter({
                   height: worksBottomChild1Height,
                 }}
                 onMouseEnter={() => {
-                  keisyo1.start({ x: -1500 })
-                  keisyo2.start({ x: 1500 })
+                  keisyo1.start({ x: -worksBottomChild1Height * 2.5 })
+                  keisyo2.start({ x: worksBottomChild1Height * 2.5 })
                 }}
                 onMouseLeave={() => {
                   keisyo1.start({ x: 0 })
@@ -315,12 +324,40 @@ export default function WorksPresenter({
               <div
                 className={worksStyle.bottomRight3}
                 style={{ height: worksBottomChild2Height }}
+                onMouseEnter={() => {
+                  logo.start({ y: worksBottomChild2Height })
+                }}
+                onMouseLeave={() => {
+                  logo.start({ y: 0 })
+                }}
               >
-                <div className={worksStyle.innerColumn}></div>
+                <div
+                  className={worksStyle.innerColumn}
+                  style={{
+                    width: "98%",
+                    backgroundImage: "url(/portfolio.png)",
+                  }}
+                >
+                  <motion.div
+                    style={{
+                      height: "100%",
+                      textAlign: "center",
+                      backgroundColor: "#fff",
+                    }}
+                    animate={logo}
+                    transition={{ ease: "easeInOut", duration: "1" }}
+                  >
+                    <Logo style={{ height: "100%" }} />
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <p>a</p>
+        <p>a</p>
+        <p>a</p>
+        <p>a</p>
       </div>
     </>
   )

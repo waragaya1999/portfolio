@@ -9,6 +9,7 @@ export const headerStyle = {
     top: "2%",
     right: "0",
     cursor: "pointer",
+    zIndex: "99",
   }),
   item: style({
     width: "20px",

@@ -7,15 +7,11 @@ import Menu from "../Menu/container"
 type Props = {
   menuCalled: boolean
   handleMenuCalled: (bool: boolean) => void
-  windowWidth: number
-  windowHeight: number
 }
 
-export default function HomePresenter({
-  menuCalled,
-  handleMenuCalled,
-  windowHeight,
-}: Props) {
+export default function HomePresenter({ menuCalled, handleMenuCalled }: Props) {
+  const windowHeight = window.innerHeight
+
   return (
     <>
       <AnimatePresence>

@@ -1,10 +1,10 @@
-import HomePresenter from "./presenter"
+import ContactPresenter from "./presenter"
 import { usePortfolio } from "../../hooks/usePortfolio"
 
-export default function Home() {
+export default function Contact() {
   const { menuCalled, handleMenuCalled } = usePortfolio()
   return (
-    <HomePresenter
+    <ContactPresenter
       menuCalled={menuCalled}
       handleMenuCalled={handleMenuCalled}
     />
