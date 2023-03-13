@@ -4,6 +4,7 @@ import { ReactComponent as Champ } from "/public/champions.svg"
 import { ReactComponent as Keisyo } from "/public/keisyo.svg"
 import { ReactComponent as Pole } from "/public/telegraphPole.svg"
 import { ReactComponent as Cafe } from "/public/cafeDePARIS.svg"
+import { useNavigate } from "react-router-dom"
 import { ReactComponent as Logo } from "../../images/portfolio.svg"
 import { worksStyle } from "../../styles/works.css"
 import Header from "../Header/container"
@@ -25,6 +26,7 @@ export default function WorksPresenter({
   const [worksBottomChild2Height, setWorksBottomChild2Height] =
     useState<number>(0)
   const [keisyoHeight, setKeisyoHeight] = useState<number>(0)
+  const navigate = useNavigate()
   const pole1 = useAnimation()
   const pole2 = useAnimation()
   const champ = useAnimation()
@@ -100,6 +102,7 @@ export default function WorksPresenter({
               <div
                 className={worksStyle.innerRow}
                 style={{ backgroundImage: "url(/pole.png)" }}
+                onClick={() => navigate("/works/tele")}
               >
                 <motion.div
                   style={{
@@ -151,6 +154,7 @@ export default function WorksPresenter({
                 onMouseLeave={() => {
                   champ.start({ y: 0 })
                 }}
+                onClick={() => navigate("/works/champions")}
               >
                 <motion.div
                   style={{
@@ -185,9 +189,7 @@ export default function WorksPresenter({
                 onMouseLeave={() => {
                   cafe.start({ x: 0 })
                 }}
-                onClick={() => {
-                  alert()
-                }}
+                onClick={() => navigate("/works/cafeDePARIS")}
               >
                 <motion.div
                   style={{
@@ -229,6 +231,7 @@ export default function WorksPresenter({
                   style={{
                     backgroundImage: "url(/keisyo.png)",
                   }}
+                  onClick={() => navigate("/works/keisyo")}
                 >
                   <motion.div
                     style={{
@@ -337,6 +340,7 @@ export default function WorksPresenter({
                     width: "98%",
                     backgroundImage: "url(/portfolio.png)",
                   }}
+                  onClick={() => navigate("/works/portfolio")}
                 >
                   <motion.div
                     style={{
@@ -354,10 +358,6 @@ export default function WorksPresenter({
             </div>
           </div>
         </div>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
       </div>
     </>
   )
